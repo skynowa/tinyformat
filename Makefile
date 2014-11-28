@@ -20,16 +20,16 @@ speed_test: tinyformat_speed_test
 	@echo "Running speed tests..."
 	@echo 
 	@echo "*** printf ***"
-	@time -p ./tinyformat_speed_test printf > /dev/null
+	@time -p ./tinyformat_speed_test std::printf > /dev/null
 	@echo 
 	@echo "*** iostreams ***"
-	@time -p ./tinyformat_speed_test iostreams > /dev/null
+	@time -p ./tinyformat_speed_test std::iostreams > /dev/null
 	@echo 
 	@echo "*** tinyformat ***"
 	@time -p ./tinyformat_speed_test tinyformat > /dev/null
 	@echo 
 	# @echo "*** boost ***"
-	# @time -p ./tinyformat_speed_test boost > /dev/null
+	# @time -p ./tinyformat_speed_test boost::format > /dev/null
 	@echo 
 	@echo "*** xlib::core::String::format ***"
 	@time -p ./tinyformat_speed_test xlib::core::String::format > /dev/null

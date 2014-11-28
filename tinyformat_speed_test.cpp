@@ -12,66 +12,65 @@ namespace std { class type_info; }
 
 void speedTest(const std::string& which)
 {
-    // Following is required so that we're not limited by per-character
-    // buffering.
+    const long        optionLoops = 2000000L;
+    const std::string optionStr   = "aaaaaaaaaaaaa";
+
+    // Following is required so that we're not limited by per-character buffering
     std::ios_base::sync_with_stdio(false);
-    const long maxIter = 2000000L;
-    if(which == "printf")
-    {
-        // libc version
-        for(long i = 0; i < maxIter; ++i)
-            printf("%0.10f:%04d:%+g:%s:%p:%c:%%\n",
-                   1.234, 42, 3.13, "str", (void*)1000, (int)'X');
+
+    if (which == "std::printf") {
+        for (long i = 0; i < optionLoops; ++ i) {
+            std::printf("%0.10f:%04d:%+g:%s:%p:%c:%%\n",
+                1.234, 42, 3.13, "str", (void *)1000, (int)'X');
+        }
     }
-    else if(which == "iostreams")
-    {
-        // Std iostreams version.  What a mess!!
-        for(long i = 0; i < maxIter; ++i)
+    else if (which == "std::iostreams") {
+        for (long i = 0; i < optionLoops; ++ i) {
             std::cout
                 << std::setprecision(10) << std::fixed << 1.234
                 << std::resetiosflags(std::ios::floatfield) << ":"
                 << std::setw(4) << std::setfill('0') << 42 << std::setfill(' ') << ":"
                 << std::setiosflags(std::ios::showpos) << 3.13 << std::resetiosflags(std::ios::showpos) << ":"
                 << "str" << ":"
-                << (void*)1000 << ":"
+                << (void *)1000 << ":"
                 << 'X' << ":%\n";
+        }
     }
-    else if(which == "tinyformat")
-    {
-        // tinyformat version.
-        for(long i = 0; i < maxIter; ++i)
+    else if (which == "tinyformat") {
+        for (long i = 0; i < optionLoops; ++ i) {
             tfm::printf("%0.10f:%04d:%+g:%s:%p:%c:%%\n",
-                        1.234, 42, 3.13, "str", (void*)1000, (int)'X');
+                1.234, 42, 3.13, "str", (void *)1000, (int)'X');
+        }
     }
-    else if(which == "boost")
-    {
-        // boost::format version
-        for(long i = 0; i < maxIter; ++i)
+    else if (which == "boost::format") {
+        for (long i = 0; i < optionLoops; ++ i) {
             std::cout << boost::format("%0.10f:%04d:%+g:%s:%p:%c:%%\n")
-                % 1.234 % 42 % 3.13 % "str" % (void*)1000 % (int)'X';
+                % 1.234 % 42 % 3.13 % "str" % (void *)1000 % (int)'X';
+        }
     }
-    else if(which == "xlib::core::String::format")
-    {
-        for(long i = 0; i < maxIter; ++i)
-            xlib::core::String::format("%0.10f:%04d:%+g:%s:%p:%c:%%\n",
-                   1.234, 42, 3.13, "str", (void*)1000, (int)'X');
+    else if (which == "xlib::core::String::format") {
+        for (long i = 0; i < optionLoops; ++ i) {
+            std::cout << xlib::core::String::format("%0.10f:%04d:%+g:%s:%p:%c:%%\n",
+                1.234, 42, 3.13, "str", (void *)1000, (int)'X');
+        }
     }
-    else if(which == "xlib::Format")
-    {
-        for(long i = 0; i < maxIter; ++i)
+    else if (which == "xlib::Format") {
+        for (long i = 0; i < optionLoops; ++ i) {
             std::cout << xlib::core::Format("{}:{}:{}:{}:{}:{}:{}\n",
-                1.234, 42, 3.13, "str", (void*)1000, (int)'X');
+                1.234, 42, 3.13, "str", (void *)1000, (int)'X');
+        }
     }
-    else
-    {
-        assert(0 && "speed test for which version?");
+    else {
+        assert(0 && "Speed test for which version?");
     }
 }
 
 
 int main(int argc, char* argv[])
 {
-    if(argc >= 2)
+    if (argc >= 2) {
         speedTest(argv[1]);
+    }
+
     return 0;
 }
