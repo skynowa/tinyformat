@@ -50,9 +50,14 @@ void speedTest(const std::string& which)
             std::cout << boost::format("%0.10f:%04d:%+g:%s:%p:%c:%%\n")
                 % 1.234 % 42 % 3.13 % "str" % (void*)1000 % (int)'X';
     }
-    else if(which == "xlib")
+    else if(which == "xlib::core::String::format")
     {
-        // xlib version
+        for(long i = 0; i < maxIter; ++i)
+            xlib::core::String::format("%0.10f:%04d:%+g:%s:%p:%c:%%\n",
+                   1.234, 42, 3.13, "str", (void*)1000, (int)'X');
+    }
+    else if(which == "xlib::Format")
+    {
         for(long i = 0; i < maxIter; ++i)
             std::cout << xlib::core::Format("{}:{}:{}:{}:{}:{}:{}\n",
                 1.234, 42, 3.13, "str", (void*)1000, (int)'X');
