@@ -21,15 +21,15 @@ speed_test: tinyformat_speed_test
 	@echo 
 	# @echo printf timings:
 	# @time -p ./tinyformat_speed_test printf > /dev/null
-	# @echo 
-	# @echo iostreams timings:
-	# @time -p ./tinyformat_speed_test iostreams > /dev/null
-	# @echo 
-	# @echo tinyformat timings:
-	# @time -p ./tinyformat_speed_test tinyformat > /dev/null
 	@echo 
-	@echo boost timings:
-	@time -p ./tinyformat_speed_test boost > /dev/null
+	@echo iostreams timings:
+	@time -p ./tinyformat_speed_test iostreams > /dev/null
+	@echo 
+	@echo tinyformat timings:
+	@time -p ./tinyformat_speed_test tinyformat > /dev/null
+	@echo 
+	# @echo boost timings:
+	# @time -p ./tinyformat_speed_test boost > /dev/null
 	@echo 
 	@echo xlib timings:
 	@time -p ./tinyformat_speed_test xlib > /dev/null
