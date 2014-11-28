@@ -12,20 +12,21 @@ namespace std { class type_info; }
 
 void speedTest(const std::string& which)
 {
-    const long        optionLoops = 2000000L;
-    const std::string optionStr   = "aaaaaaaaaaaaa";
+    const long loops = 2000000L;
+
+    #define str "aaaaaaaaaaaaa"
 
     // Following is required so that we're not limited by per-character buffering
     std::ios_base::sync_with_stdio(false);
 
     if (which == "std::printf") {
-        for (long i = 0; i < optionLoops; ++ i) {
+        for (long i = 0; i < loops; ++ i) {
             std::printf("%0.10f:%04d:%+g:%s:%p:%c:%%\n",
                 1.234, 42, 3.13, "str", (void *)1000, (int)'X');
         }
     }
     else if (which == "std::iostreams") {
-        for (long i = 0; i < optionLoops; ++ i) {
+        for (long i = 0; i < loops; ++ i) {
             std::cout
                 << std::setprecision(10) << std::fixed << 1.234
                 << std::resetiosflags(std::ios::floatfield) << ":"
@@ -37,25 +38,25 @@ void speedTest(const std::string& which)
         }
     }
     else if (which == "tinyformat") {
-        for (long i = 0; i < optionLoops; ++ i) {
+        for (long i = 0; i < loops; ++ i) {
             tfm::printf("%0.10f:%04d:%+g:%s:%p:%c:%%\n",
                 1.234, 42, 3.13, "str", (void *)1000, (int)'X');
         }
     }
     else if (which == "boost::format") {
-        for (long i = 0; i < optionLoops; ++ i) {
+        for (long i = 0; i < loops; ++ i) {
             std::cout << boost::format("%0.10f:%04d:%+g:%s:%p:%c:%%\n")
                 % 1.234 % 42 % 3.13 % "str" % (void *)1000 % (int)'X';
         }
     }
     else if (which == "xlib::core::String::format") {
-        for (long i = 0; i < optionLoops; ++ i) {
+        for (long i = 0; i < loops; ++ i) {
             std::cout << xlib::core::String::format("%0.10f:%04d:%+g:%s:%p:%c:%%\n",
                 1.234, 42, 3.13, "str", (void *)1000, (int)'X');
         }
     }
     else if (which == "xlib::Format") {
-        for (long i = 0; i < optionLoops; ++ i) {
+        for (long i = 0; i < loops; ++ i) {
             std::cout << xlib::core::Format("{}:{}:{}:{}:{}:{}:{}\n",
                 1.234, 42, 3.13, "str", (void *)1000, (int)'X');
         }
