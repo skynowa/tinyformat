@@ -14,7 +14,17 @@ void speedTest(const std::string& which)
 {
     const long loops = 2000000L;
 
-    #define str "asdcf'awsrk.fw3[045im2,[4oc'wxe;/fzd1[-,c4rxj.wk;szlcgjx34-rx134rxqwetaertg"
+    #define str \
+        "asdcf'awsrk.fw3[045im2,[4oc'wxe;/fzd1[-,c4rxj.wk;szlcgjx34-rx134rxqwetaertg" \
+        "asdcf'awsrk.fw3[045im2,[4oc'wxe;/fzd1[-,c4rxj.wk;szlcgjx34-rx134rxqwetaertg" \
+        "asdcf'awsrk.fw3[045im2,[4oc'wxe;/fzd1[-,c4rxj.wk;szlcgjx34-rx134rxqwetaertg" \
+        "asdcf'awsrk.fw3[045im2,[4oc'wxe;/fzd1[-,c4rxj.wk;szlcgjx34-rx134rxqwetaertg" \
+        "asdcf'awsrk.fw3[045im2,[4oc'wxe;/fzd1[-,c4rxj.wk;szlcgjx34-rx134rxqwetaertg" \
+        "asdcf'awsrk.fw3[045im2,[4oc'wxe;/fzd1[-,c4rxj.wk;szlcgjx34-rx134rxqwetaertg" \
+        "asdcf'awsrk.fw3[045im2,[4oc'wxe;/fzd1[-,c4rxj.wk;szlcgjx34-rx134rxqwetaertg" \
+        "asdcf'awsrk.fw3[045im2,[4oc'wxe;/fzd1[-,c4rxj.wk;szlcgjx34-rx134rxqwetaertg" \
+        "asdcf'awsrk.fw3[045im2,[4oc'wxe;/fzd1[-,c4rxj.wk;szlcgjx34-rx134rxqwetaertg" \
+        "asdcf'awsrk.fw3[045im2,[4oc'wxe;/fzd1[-,c4rxj.wk;szlcgjx34-rx134rxqwetaertg"
 
     // Following is required so that we're not limited by per-character buffering
     std::ios_base::sync_with_stdio(false);
