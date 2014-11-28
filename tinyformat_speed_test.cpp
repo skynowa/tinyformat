@@ -8,6 +8,7 @@ namespace std { class type_info; }
 #include <iomanip>
 #include <stdio.h>
 #include "tinyformat.h"
+#include <xLib/Core/Format.h>
 
 void speedTest(const std::string& which)
 {
@@ -48,6 +49,13 @@ void speedTest(const std::string& which)
         for(long i = 0; i < maxIter; ++i)
             std::cout << boost::format("%0.10f:%04d:%+g:%s:%p:%c:%%\n")
                 % 1.234 % 42 % 3.13 % "str" % (void*)1000 % (int)'X';
+    }
+    else if(which == "xlib")
+    {
+        // xlib version
+        for(long i = 0; i < maxIter; ++i)
+            std::cout << xlib::core::Format("{}:{}:{}:{}:{}:{}:{}\n",
+                1.234, 42, 3.13, "str", (void*)1000, (int)'X');
     }
     else
     {

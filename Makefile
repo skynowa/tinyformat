@@ -18,14 +18,23 @@ doc: tinyformat.html
 
 speed_test: tinyformat_speed_test
 	@echo running speed tests...
-	@echo printf timings:
-	@time -p ./tinyformat_speed_test printf > /dev/null
-	@echo iostreams timings:
-	@time -p ./tinyformat_speed_test iostreams > /dev/null
-	@echo tinyformat timings:
-	@time -p ./tinyformat_speed_test tinyformat > /dev/null
+	@echo 
+	# @echo printf timings:
+	# @time -p ./tinyformat_speed_test printf > /dev/null
+	# @echo 
+	# @echo iostreams timings:
+	# @time -p ./tinyformat_speed_test iostreams > /dev/null
+	# @echo 
+	# @echo tinyformat timings:
+	# @time -p ./tinyformat_speed_test tinyformat > /dev/null
+	@echo 
 	@echo boost timings:
 	@time -p ./tinyformat_speed_test boost > /dev/null
+	@echo 
+	@echo xlib timings:
+	@time -p ./tinyformat_speed_test xlib > /dev/null
+	@echo 	
+	@echo "\n"
 
 tinyformat_test_cxx98: tinyformat.h tinyformat_test.cpp Makefile
 	$(CXX) $(CXXFLAGS) -std=c++98 -DTINYFORMAT_NO_VARIADIC_TEMPLATES tinyformat_test.cpp -o tinyformat_test_cxx98
@@ -38,7 +47,7 @@ tinyformat.html: README.rst
 	rst2html.py README.rst > tinyformat.html
 
 tinyformat_speed_test: tinyformat.h tinyformat_speed_test.cpp Makefile
-	$(CXX) $(CXXFLAGS) -O3 -DNDEBUG tinyformat_speed_test.cpp -o tinyformat_speed_test
+	$(CXX) $(CXXFLAGS) -O3 -DNDEBUG tinyformat_speed_test.cpp -o tinyformat_speed_test -ldl
 
 bloat_test:
 	@for opt in '' '-O3 -DNDEBUG' ; do \
