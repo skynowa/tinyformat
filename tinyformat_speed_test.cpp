@@ -14,51 +14,51 @@ void speedTest(const std::string& which)
 {
     const long loops = 2000000L;
 
-    #define str "aaaaaaaaaaaaa"
+    #define str "asdcf'awsrk.fw3[045im2,[4oc'wxe;/fzd1[-,c4rxj.wk;szlcgjx34-rx134rxqwetaertg"
 
     // Following is required so that we're not limited by per-character buffering
     std::ios_base::sync_with_stdio(false);
 
     if (which == "std::printf") {
         for (long i = 0; i < loops; ++ i) {
-            std::printf("%0.10f:%04d:%+g:%s:%p:%c:%%\n",
-                1.234, 42, 3.13, "str", (void *)1000, (int)'X');
+            std::printf("%0.10f" str "%04d" str "%+g" str "%s" str "%p" str "%c" str "%%\n",
+                1.234, 42, 3.13, "string", (void *)1000, (int)'X');
         }
     }
     else if (which == "std::iostreams") {
         for (long i = 0; i < loops; ++ i) {
             std::cout
                 << std::setprecision(10) << std::fixed << 1.234
-                << std::resetiosflags(std::ios::floatfield) << ":"
-                << std::setw(4) << std::setfill('0') << 42 << std::setfill(' ') << ":"
-                << std::setiosflags(std::ios::showpos) << 3.13 << std::resetiosflags(std::ios::showpos) << ":"
-                << "str" << ":"
-                << (void *)1000 << ":"
-                << 'X' << ":%\n";
+                << std::resetiosflags(std::ios::floatfield) << str
+                << std::setw(4) << std::setfill('0') << 42 << std::setfill(' ') << str
+                << std::setiosflags(std::ios::showpos) << 3.13 << std::resetiosflags(std::ios::showpos) << str
+                << "string" << str
+                << (void *)1000 << str
+                << 'X' << str "%\n";
         }
     }
     else if (which == "tinyformat") {
         for (long i = 0; i < loops; ++ i) {
-            tfm::printf("%0.10f:%04d:%+g:%s:%p:%c:%%\n",
-                1.234, 42, 3.13, "str", (void *)1000, (int)'X');
+            tfm::printf("%0.10f" str "%04d" str "%+g" str "%s" str "%p" str "%c" str "%%\n",
+                1.234, 42, 3.13, "string", (void *)1000, (int)'X');
         }
     }
     else if (which == "boost::format") {
         for (long i = 0; i < loops; ++ i) {
-            std::cout << boost::format("%0.10f:%04d:%+g:%s:%p:%c:%%\n")
-                % 1.234 % 42 % 3.13 % "str" % (void *)1000 % (int)'X';
+            std::cout << boost::format("%0.10f" str "%04d" str "%+g" str "%s" str "%p" str "%c" str "%%\n")
+                % 1.234 % 42 % 3.13 % "string" % (void *)1000 % (int)'X';
         }
     }
     else if (which == "xlib::core::String::format") {
         for (long i = 0; i < loops; ++ i) {
-            std::cout << xlib::core::String::format("%0.10f:%04d:%+g:%s:%p:%c:%%\n",
-                1.234, 42, 3.13, "str", (void *)1000, (int)'X');
+            std::cout << xlib::core::String::format("%0.10f" str "%04d" str "%+g" str "%s" str "%p" str "%c" str "%%\n",
+                1.234, 42, 3.13, "string", (void *)1000, (int)'X');
         }
     }
     else if (which == "xlib::Format") {
         for (long i = 0; i < loops; ++ i) {
-            std::cout << xlib::core::Format("{}:{}:{}:{}:{}:{}:{}\n",
-                1.234, 42, 3.13, "str", (void *)1000, (int)'X');
+            std::cout << xlib::core::Format("{}" str "{}" str "{}" str "{}" str "{}" str "{}" str "{}\n",
+                1.234, 42, 3.13, "string", (void *)1000, (int)'X');
         }
     }
     else {
