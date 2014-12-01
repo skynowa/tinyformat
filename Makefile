@@ -32,7 +32,7 @@ speed_test: tinyformat_speed_test
 	@time -p ./tinyformat_speed_test boost::format > /dev/null
 	@echo
 	@echo "*** xlib::core::String::format ***"
-	@time -p ./tinyformat_speed_test xlib::core::String::format > /dev/null
+	# @time -p ./tinyformat_speed_test xlib::core::String::format > /dev/null
 	@echo 
 	@echo "*** xlib::Format ***"
 	@time -p ./tinyformat_speed_test xlib::Format > /dev/null	
