@@ -20,7 +20,7 @@ speed_test: tinyformat_speed_test
 	@echo "Running speed tests..."
 	@echo 
 	@echo "*** printf ***"
-	@time -p ./tinyformat_speed_test std::printf > /dev/null
+	#@time -p ./tinyformat_speed_test std::printf > /dev/null
 	@echo 
 	@echo "*** iostreams ***"
 	@time -p ./tinyformat_speed_test std::iostreams > /dev/null
